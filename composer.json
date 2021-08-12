@@ -20,25 +20,28 @@
         "symfony/framework-bundle": "^4.4 || ^5.0",
         "doctrine/phpcr-bundle": "^1.3 || ^2.0",
         "doctrine/phpcr-odm": "^1.4.2 || ^2.0",
-        "sonata-project/block-bundle": "^3.11",
-        "symfony-cmf/core-bundle": "^2.0"
+        "sonata-project/block-bundle": "^3.11"
     },
     "require-dev": {
-        "symfony-cmf/testing": "^2.1.8",
-        "symfony-cmf/menu-bundle": "^2.1",
-        "symfony/phpunit-bridge": "^3.3 || ^4.0",
-        "sonata-project/cache-bundle": "^2.4",
-        "sonata-project/core-bundle": "^3.0",
+        "symfony-cmf/testing": "^3.0",
+        "symfony-cmf/menu-bundle": "dev-master",
+        "symfony/phpunit-bridge": "^4.4 || ^5.0",
+        "sonata-project/cache-bundle": "^3.3",
         "twig/twig": "^1.14.2 || ^2.0",
-        "symfony/security-bundle": "^2.8 || ^3.3 || ^4.0",
-        "symfony/twig-bundle": "^2.8 || ^3.3 || ^4.0",
-        "symfony/asset": "^2.8 || ^3.3 || ^4.0",
-        "symfony/templating": "^2.8 || ^3.3 || ^4.0"
+        "symfony/security-bundle": "^4.4 || ^5.0",
+        "symfony/twig-bundle": "^4.4 || ^5.0",
+        "symfony/asset": "^4.4 || ^5.0",
+        "symfony/templating": "^4.4 || ^5.0",
+        "jackalope/jackalope": "^1.4",
+        "jackalope/jackalope-doctrine-dbal": "^1.7"
     },
     "suggest": {
         "sonata-project/cache-bundle": "To add caching support for block loading",
         "eko/feedbundle": "When using the RssBlock"
     },
+    "repositories": [
+        { "type": "vcs", "url": "git@github.com:NETFORMIC-GmbH/symfony-cmf-menu-bundle.git" }
+    ],
     "autoload": {
         "psr-4": {
             "Symfony\\Cmf\\Bundle\\BlockBundle\\": "src/"
