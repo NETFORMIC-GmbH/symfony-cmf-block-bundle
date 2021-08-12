@@ -11,7 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
 use Sonata\BlockBundle\Block\BlockLoaderInterface;
 use Sonata\BlockBundle\Exception\BlockNotFoundException;
