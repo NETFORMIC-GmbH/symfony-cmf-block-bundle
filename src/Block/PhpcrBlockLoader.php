@@ -115,7 +115,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     /**
      * {@inheritdoc}
      */
-    public function load($configuration)
+    public function load($configuration): BlockInterface
     {
         if (!$this->support($configuration)) {
             // sanity check, the chain loader should already have checked.
@@ -138,7 +138,7 @@ class PhpcrBlockLoader implements BlockLoaderInterface
     /**
      * {@inheritdoc}
      */
-    public function support($configuration)
+    public function support($configuration): bool
     {
         if (!is_array($configuration)) {
             return false;
@@ -148,6 +148,11 @@ class PhpcrBlockLoader implements BlockLoaderInterface
             return false;
         }
 
+        return true;
+    }
+
+    public function exists(string $type): bool
+    {
         return true;
     }
 

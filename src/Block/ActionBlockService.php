@@ -13,12 +13,12 @@ namespace Symfony\Cmf\Bundle\BlockBundle\Block;
 
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 use Symfony\Component\HttpKernel\Fragment\FragmentHandler;
+use Twig\Environment;
 
 class ActionBlockService extends AbstractBlockService
 {
@@ -33,14 +33,13 @@ class ActionBlockService extends AbstractBlockService
     protected $renderer;
 
     /**
-     * @param string          $name
-     * @param EngineInterface $templating
+     * @param Environment     $templating
      * @param FragmentHandler $renderer
      * @param RequestStack    $requestStack
      */
-    public function __construct($name, EngineInterface $templating, FragmentHandler $renderer, RequestStack $requestStack)
+    public function __construct(Environment $templating, FragmentHandler $renderer, RequestStack $requestStack)
     {
-        parent::__construct($name, $templating);
+        parent::__construct($templating);
         $this->renderer = $renderer;
         $this->requestStack = $requestStack;
     }
@@ -48,7 +47,7 @@ class ActionBlockService extends AbstractBlockService
     /**
      * {@inheritdoc}
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, ?Response $response = null): Response
     {
         /** @var $block ActionBlock */
         $block = $blockContext->getBlock();

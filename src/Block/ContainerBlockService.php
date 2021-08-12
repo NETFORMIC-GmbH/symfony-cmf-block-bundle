@@ -15,10 +15,10 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BlockRendererInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Twig\Environment;
 
 class ContainerBlockService extends AbstractBlockService implements BlockServiceInterface
 {
@@ -33,14 +33,13 @@ class ContainerBlockService extends AbstractBlockService implements BlockService
     protected $template = '@CmfBlock/Block/block_container.html.twig';
 
     /**
-     * @param string                 $name
-     * @param EngineInterface        $templating
+     * @param Environment            $templating
      * @param BlockRendererInterface $blockRenderer
      * @param string|null            $template      to overwrite the default template
      */
-    public function __construct($name, EngineInterface $templating, BlockRendererInterface $blockRenderer, $template = null)
+    public function __construct(Environment $templating, BlockRendererInterface $blockRenderer, $template = null)
     {
-        parent::__construct($name, $templating);
+        parent::__construct($templating);
 
         $this->blockRenderer = $blockRenderer;
 
@@ -52,7 +51,7 @@ class ContainerBlockService extends AbstractBlockService implements BlockService
     /**
      * {@inheritdoc}
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, ?Response $response = null): Response
     {
         if (!$response) {
             $response = new Response();
@@ -87,7 +86,7 @@ class ContainerBlockService extends AbstractBlockService implements BlockService
     /**
      * {@inheritdoc}
      */
-    public function configureSettings(OptionsResolver $resolver)
+    public function configureSettings(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'template' => $this->template,

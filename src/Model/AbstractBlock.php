@@ -98,11 +98,9 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * {@inheritdoc}
      */
-    public function setId($id)
+    public function setId($id): void
     {
         $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -116,24 +114,22 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * {@inheritdoc}
      */
-    public function setType($type)
+    public function setType(string $type): void
     {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setEnabled($enabled)
+    public function setEnabled(bool $enabled): void
     {
         $this->setPublishable($enabled);
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->isPublishable();
     }
@@ -141,17 +137,15 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * {@inheritdoc}
      */
-    public function setPosition($position)
+    public function setPosition(int $position): void
     {
         // TODO: implement. https://github.com/symfony-cmf/BlockBundle/issues/150
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getPosition()
+    public function getPosition(): int
     {
         $siblings = $this->getParentObject()->getChildren();
 
@@ -161,17 +155,15 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * {@inheritdoc}
      */
-    public function setCreatedAt(\DateTime $createdAt = null)
+    public function setCreatedAt(?\DateTime $createdAt = null): void
     {
         $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
@@ -179,17 +171,15 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * {@inheritdoc}
      */
-    public function setUpdatedAt(\DateTime $updatedAt = null)
+    public function setUpdatedAt(?\DateTime $updatedAt = null): void
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -249,22 +239,22 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * {@inheritdoc}
      */
-    public function addChildren(BlockInterface $children)
+    public function addChildren(BlockInterface $children): void
     {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getChildren()
+    public function getChildren(): array
     {
-        return new ArrayCollection();
+        return [];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         return false;
     }
@@ -272,17 +262,15 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * {@inheritdoc}
      */
-    public function setName($name)
+    public function setName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -315,9 +303,9 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
      *
      * Redirect to setParentObject
      */
-    public function setParent(BlockInterface $parent = null)
+    public function setParent(?BlockInterface $parent = null): void
     {
-        return $this->setParentObject($parent);
+        $this->setParentObject($parent);
     }
 
     /**
@@ -325,19 +313,19 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
      *
      * Check if getParentObject is instanceof BlockInterface, otherwise return null
      */
-    public function getParent()
+    public function getParent(): ?BlockInterface
     {
         if (($parent = $this->getParentObject()) instanceof BlockInterface) {
             return $parent;
         }
 
-        return;
+        return null;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function hasParent()
+    public function hasParent(): bool
     {
         return $this->getParentObject() instanceof BlockInterface;
     }
@@ -349,17 +337,15 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
      *
      * @return $this
      */
-    public function setTtl($ttl)
+    public function setTtl(int $ttl): void
     {
         $this->ttl = $ttl;
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getTtl()
+    public function getTtl(): int
     {
         return $this->ttl;
     }
@@ -377,17 +363,15 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * {@inheritdoc}
      */
-    public function setSettings(array $settings = [])
+    public function setSettings(array $settings = []): void
     {
         $this->settings = $settings;
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getSettings()
+    public function getSettings(): array
     {
         return $this->settings;
     }
@@ -395,11 +379,9 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     /**
      * {@inheritdoc}
      */
-    public function setSetting($name, $value)
+    public function setSetting(string $name, $value): void
     {
         $this->settings[$name] = $value;
-
-        return $this;
     }
 
     /**

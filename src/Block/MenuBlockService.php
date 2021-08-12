@@ -27,9 +27,9 @@ class MenuBlockService extends AbstractBlockService implements BlockServiceInter
 {
     protected $template = '@CmfBlock/Block/block_menu.html.twig';
 
-    public function __construct($name, $templating, $template = null)
+    public function __construct($templating, $template = null)
     {
-        parent::__construct($name, $templating);
+        parent::__construct($templating);
 
         if ($template) {
             $this->template = $template;
@@ -39,7 +39,7 @@ class MenuBlockService extends AbstractBlockService implements BlockServiceInter
     /**
      * {@inheritdoc}
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, ?Response $response = null): Response
     {
         $block = $blockContext->getBlock();
 
@@ -68,7 +68,7 @@ class MenuBlockService extends AbstractBlockService implements BlockServiceInter
         $this->configureSettings($resolver);
     }
 
-    public function configureSettings(OptionsResolver $resolver)
+    public function configureSettings(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'template' => $this->template,

@@ -22,9 +22,9 @@ class StringBlockService extends AbstractBlockService implements BlockServiceInt
 {
     protected $template = '@CmfBlock/Block/block_string.html.twig';
 
-    public function __construct($name, $templating, $template = null)
+    public function __construct($templating, $template = null)
     {
-        parent::__construct($name, $templating);
+        parent::__construct($templating);
 
         if ($template) {
             $this->template = $template;
@@ -34,7 +34,7 @@ class StringBlockService extends AbstractBlockService implements BlockServiceInt
     /**
      * {@inheritdoc}
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, ?Response $response = null): Response
     {
         if (!$response) {
             $response = new Response();
@@ -58,7 +58,7 @@ class StringBlockService extends AbstractBlockService implements BlockServiceInt
     /**
      * {@inheritdoc}
      */
-    public function configureSettings(OptionsResolver $resolver)
+    public function configureSettings(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'template' => $this->template,
