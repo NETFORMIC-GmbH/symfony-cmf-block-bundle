@@ -148,8 +148,9 @@ abstract class AbstractBlock implements BlockInterface, PublishableInterface, Pu
     public function getPosition(): int
     {
         $siblings = $this->getParentObject()->getChildren();
+        $index = array_search($this, $siblings);
 
-        return array_search($siblings->indexOf($this), $siblings->getKeys());
+        return array_search($index, array_keys($siblings));
     }
 
     /**
